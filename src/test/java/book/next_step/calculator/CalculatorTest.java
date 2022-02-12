@@ -1,11 +1,27 @@
 package book.next_step.calculator;
 
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Slf4j
 class CalculatorTest {
-    private Calculator calculator = new Calculator();
+    private Calculator calculator;
+
+    @BeforeEach
+    void setup() {
+        log.info("@BeforeEach 초기화 실행");
+        calculator = new Calculator();
+    }
+
+    @AfterEach
+    void end() {
+        log.info("@AfterEach 후처리 실행");
+    }
 
     @Test
     void add() {
@@ -26,4 +42,5 @@ class CalculatorTest {
     void divide() {
         assertEquals(2, calculator.divide(6, 3));
     }
+
 }
