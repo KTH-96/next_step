@@ -19,20 +19,24 @@ class StringCalculatorTest {
     }
 
     @Test
-    @DisplayName("문자열 테스트")
-    void strTest() {
-        String str = "1:2:3r4y5~6}7?8/9;10";
-        int[] intArr = stringCalculator.stringToIntArr(str);
-        for (int i : intArr) {
-            log.info("args = {}", i);
-        }
-        assertEquals(55, stringCalculator.sum(intArr));
+    @DisplayName("sum_문자하나")
+    void sumTest1() {
+        assertEquals(1, stringCalculator.sum("1"));
     }
     @Test
-    @DisplayName("문자열에 음수값이 있을경우")
-    void exTest() {
-        int[] arr = {1, 2, 3, 4, 5, -1};
-        Assertions.assertThrows(RuntimeException.class, () -> stringCalculator.sum(arr));
+    @DisplayName("sum_null_또는_반문자")
+    void sumTest2() {
+        assertEquals(0, stringCalculator.sum(""));
+        assertEquals(0, stringCalculator.sum(null));
     }
-
+    @Test
+    @DisplayName("sum_쉼표_또는_콜론_구분자")
+    void sumTest3() {
+        assertEquals(6, stringCalculator.sum("1,2;3"));
+    }
+    @Test
+    @DisplayName("sum_음수")
+    void sumTest4() {
+        assertThrows(RuntimeException.class, () -> stringCalculator.sum("-1;2"));
+    }
 }
