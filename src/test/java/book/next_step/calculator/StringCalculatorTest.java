@@ -32,11 +32,12 @@ class StringCalculatorTest {
     @Test
     @DisplayName("sum_쉼표_또는_콜론_구분자")
     void sumTest3() {
-        assertEquals(6, stringCalculator.sum("1,2;3"));
+        assertEquals(6, stringCalculator.sum("1,2:3"));
     }
     @Test
     @DisplayName("sum_음수")
     void sumTest4() {
-        assertThrows(RuntimeException.class, () -> stringCalculator.sum("-1;2"));
+        assertThrows(RuntimeException.class, () -> stringCalculator.sum("-1:2"));
     }
+
 }
